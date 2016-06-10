@@ -1,11 +1,11 @@
-<h1>Them Bai Viet Moi</h1>
-	{!! Form::open(['url' => 'articles']) !!}
+<h1>Sua bai viet {!! $articles->id !!}</h1>
+	{!! Form::model($articles,['method'=>'PATCH','action'=>['ArticlesController@update',$articles->id]]) !!}
         {!! Form::label('hihi','Name:') !!}
 		{!! Form::text('hihi') !!} <br />
  
 
  
-		{!! Form::submit('Them moi')!!}
+		{!! Form::submit('Cap nhat')!!}
  
 	{!! Form::close() !!}
 @if ($errors->any())

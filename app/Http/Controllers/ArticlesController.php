@@ -8,6 +8,8 @@ use App\Http\Requests;
 
 use App\articles;
 
+use App\Http\Requests\CheckArticlesRequest;
+
 class ArticlesController extends Controller
 {
     
@@ -19,17 +21,24 @@ class ArticlesController extends Controller
     public function create(){
         return view("articles.create");
     }
-    public function store(Request $request){
+    public function store(CheckArticlesRequest $request){
 	$dulieu_tu_input = $request->all();
     
-    $articles = new articles;
-    
-    $articles->hihi = $dulieu_tu_input['hihi'];
-    
-    $articles->save();
+    articles::create($dulieu_tu_input);
     
  
 	return redirect('/articles');
-}
+    }
     
+    public function edit($id)
+    {
+        $article = articles::findOrFail($id);
+        return view('articles.edit',array('articles'=>$article));
+    }
+    public function update(Request $request,$id)
+    {
+        $article = articles::findOrFail($id);
+        $article->update($request->all());
+        return redirect('/articles');
+    }
 }
