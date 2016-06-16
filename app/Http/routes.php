@@ -20,11 +20,20 @@ Route::controllers([
     'password'=>'Auth\PasswordController'
 ]);
 
-Route::get('/aboutme','PagesController@aboutme');
+Route::get('/aboutme','PagesController@aboutme')->middleware('Admin');
 Route::get('/contact','PagesController@contact');
-Route::get('/articles','ArticlesController@index');
 
 Route::resource('/articles','ArticlesController');
 
 
 Route::get('/chitiet-{id}','HomeController@detail');
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
+
+Route::group(['middleware' => 'web'], function () {
+    
+    Route::get('/articles','ArticlesController@index');
+
+}
+   );

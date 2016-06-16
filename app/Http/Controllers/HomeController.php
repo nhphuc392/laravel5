@@ -2,19 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests;
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
-
-
-
-class HomeController extends Controller{
-    public function getDetailAction($id)
+class HomeController extends Controller
+{
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
     {
-            dd($id);
+        $this->middleware('auth');
     }
-    public function detail($id)
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
-            dd($id);
+        return view('home');
     }
 }
