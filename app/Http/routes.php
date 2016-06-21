@@ -28,7 +28,9 @@ Route::resource('/articles','ArticlesController');
 
 Route::get('/chitiet-{id}','HomeController@detail');
 Route::auth();
-
+Route::get('test',function(){
+	abort(403);
+});
 Route::get('/home', 'HomeController@index');
 
 Route::group(['middleware' => 'web'], function () {

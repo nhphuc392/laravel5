@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
+use Gate;
+
 class CheckArticlesRequest extends Request
 {
     /**
@@ -13,7 +15,8 @@ class CheckArticlesRequest extends Request
      */
     public function authorize()
     {
-        return true;
+      return true;
+      //  return Gate::allows('create-article'); //via form request
     }
 
     /**
